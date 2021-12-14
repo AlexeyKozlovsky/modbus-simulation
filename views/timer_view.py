@@ -20,7 +20,7 @@ class TimerView(QGroupBox):
         self.channel_indicators = [QWidget() for i in range(8)]
         self.channel_inv_indicators = [QWidget() for i in range(8)]
         self.channel_delays = [QLabel("0") for i in range(8)]
-        self.channel_periods = [QLabel("0") for i in range(8)]
+        self.channel_widths = [QLabel("0") for i in range(8)]
         for i, channel_indicator in enumerate(self.channel_indicators):
             channel_name = f'{["A", "B"][i // 4]}{i % 4 + 1}'
             channel_indicator.setStyleSheet('border: 1px solid black; background-color: white')
@@ -38,8 +38,8 @@ class TimerView(QGroupBox):
             channel_indicators_layout.addWidget(self.channel_inv_indicators[i], 1, 1, 1, 1)
 
             main_layout.addLayout(channel_indicators_layout, 3, i, 1, 1)
-            main_layout.addWidget(QLabel("Период"), 4, i, 1, 1)
-            main_layout.addWidget(self.channel_periods[i], 5, i, 1, 1)
+            main_layout.addWidget(QLabel("Длина"), 4, i, 1, 1)
+            main_layout.addWidget(self.channel_widths[i], 5, i, 1, 1)
             main_layout.addWidget(QLabel("Задержка"), 6, i, 1, 1)
             main_layout.addWidget(self.channel_delays[i], 7, i, 1, 1)
 
@@ -56,11 +56,11 @@ class TimerView(QGroupBox):
     def change_channel_inv_indicator(self, channel_num: int, status: bool):
         self.channel_inv_indicators[channel_num].setStyleSheet(f'border: 1px solid black; background-color: {"green" if status else "white"}')
 
-    def change_channel_delay(self, channel_num: int, delay: int):
+    def change_channel_delay(self, channel_num: int, delay: str):
         self.channel_delays[channel_num].setText(delay)
 
-    def change_channel_period(self, channel_num: int, period: int):
-        self.channel_periods[channel_num].setText(period)
+    def change_channel_width(self, channel_num: int, width: str):
+        self.channel_widths[channel_num].setText(width)
 
     def switch(self, on: bool):
         self.voltage_indicator.setStyleSheet(f'border: 1px solid black; background-color: {"green" if on else "white"}')
