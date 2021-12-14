@@ -1,0 +1,6 @@
+/venv
+/.idea
+/models/__pycache__
+/services/__pycache__
+/views/__pycache__
+__pycache__
